@@ -14,7 +14,7 @@ const navigate = useNavigate();
     console.log("Login submitted");
     signInWithEmailAndPassword(authService, email, password)
   .then(() => {
-    navigate("/home");
+    navigate("/profile");
   })
   .catch((error) => {
     const errorCode = error.code;
@@ -41,6 +41,7 @@ const navigate = useNavigate();
         />
         <button onClick={(e: any) => e.preventDefault}>Login</button>
       </form>
+      <button onClick={() => navigate("/")}>Go to Register</button>
       
     </div>
   );

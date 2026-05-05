@@ -1,15 +1,19 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { authService } from "../firebase/firebaseConfig";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const Register = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
     createUserWithEmailAndPassword(authService, email, password)
-      .then()
+      .then(
+        () => navigate("/profile")
+      )
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
@@ -33,6 +37,7 @@ export const Register = () => {
         />
         <button onClick={(e: any) => e.preventDefault}>Register</button>
       </form>
+        <button onClick={() => navigate("/login")}>Go to Login</button>
     </div>
   );
 };
